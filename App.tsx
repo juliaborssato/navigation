@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { useFonts, LuckiestGuy_400Regular } from '@expo-google-fonts/luckiest-guy';
+import { Dispatch, SetStateAction, useState } from 'react'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import Navigation from './src/navigation';
+
+
+export interface IPagina{
+  setPageI: Dispatch<SetStateAction<number>>
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  const [fontsLoaded] = useFonts({
+    LuckiestGuy_400Regular
+  });
+  if (!fontsLoaded) {
+    return null;
+  }
+  return(
+    <Navigation/>
+  )
+}
